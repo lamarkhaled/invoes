@@ -645,14 +645,10 @@
     letter-spacing: 0.3px;
   }
 
-  .terms-input, .notes-input {
+  .terms-input {
     font-size: 12.5px;
     color: var(--muted);
     min-height: 92px;
-  }
-
-  .notes-block {
-    margin-top: 16px;
   }
 
   @media (max-width: 700px) {
@@ -795,7 +791,6 @@
             <input type="text" id="sellerPhone" placeholder="رقم الجوال">
             <input type="text" id="sellerEmail" placeholder="البريد الإلكتروني">
             <input type="text" id="sellerSocial" class="social-input" placeholder="حساب السوشال ميديا (@username)">
-            <input type="text" id="sellerWebsite" class="social-input" placeholder="حساب آخر أو رابط الموقع">
           </div>
         </div>
       </div>
@@ -908,12 +903,6 @@
         <textarea id="sellerTerms" class="terms-input" placeholder="اكتبي شروط العمل والدفع هنا..."></textarea>
       </div>
     </footer>
-
-    <!-- ملاحظات إضافية خاصة بالفاتورة الحالية -->
-    <section class="info-card notes-block" id="notesBlock">
-      <input type="text" id="notesSectionTitle" class="section-title-input" value="ملاحظات إضافية">
-      <textarea id="invoiceNotes" class="notes-input" placeholder="ملاحظة خاصة بهذه الفاتورة (تُفرغ عند إنشاء فاتورة جديدة)..."></textarea>
-    </section>
   </main>
 
 <script>
@@ -926,7 +915,6 @@
     phone: '',
     email: '',
     social: '@lamaralharbi_sa',
-    website: '',
     logo: '',
     accentColor: '#111111',
     currency: 'ر.س',
@@ -938,7 +926,6 @@
     clientSectionTitle: 'فاتورة إلى (بيانات العميل)',
     bankSectionTitle: 'بيانات التحويل البنكي',
     termsSectionTitle: 'الشروط والأحكام',
-    notesSectionTitle: 'ملاحظات إضافية',
     bankName: '',
     bankHolder: 'لمار الحربي',
     bankAccount: '',
@@ -961,7 +948,6 @@
       clientEmail: '',
       discountValue: '',
       discountType: 'amount',
-      notes: '',
       items: [
         { desc: '', qty: 1, price: '' }
       ]
@@ -1066,7 +1052,7 @@
   }
 
   function updateEmptyPrintVisibility() {
-    ['sellerPhone', 'sellerEmail', 'sellerSocial', 'sellerWebsite'].forEach(id => {
+    ['sellerPhone', 'sellerEmail', 'sellerSocial'].forEach(id => {
       const el = document.getElementById(id);
       if (!el) return;
       if (!el.value.trim()) {
@@ -1103,7 +1089,6 @@
     document.getElementById('subtotalVal').textContent = formatMoney(subtotal);
     document.getElementById('grandTotal').textContent = formatMoney(grandTotal);
 
-    // حساب العربون والدفعة المتبقية
     const splitBox = document.getElementById('paymentSplitBox');
     if (sellerData.showDeposit) {
       splitBox.style.display = 'flex';
@@ -1124,13 +1109,6 @@
     } else {
       discountRow.classList.remove('hide-on-print');
       subtotalRow.classList.remove('hide-on-print');
-    }
-
-    const notesBlock = document.getElementById('notesBlock');
-    if (!invoiceData.notes || !invoiceData.notes.trim()) {
-      notesBlock.classList.add('hide-on-print');
-    } else {
-      notesBlock.classList.remove('hide-on-print');
     }
   }
 
@@ -1205,7 +1183,6 @@
       sellerPhone: 'phone',
       sellerEmail: 'email',
       sellerSocial: 'social',
-      sellerWebsite: 'website',
       accentColor: 'accentColor',
       currencySymbol: 'currency',
       depositBeforeLabel: 'depositBeforeLabel',
@@ -1214,7 +1191,6 @@
       clientSectionTitle: 'clientSectionTitle',
       bankSectionTitle: 'bankSectionTitle',
       termsSectionTitle: 'termsSectionTitle',
-      notesSectionTitle: 'notesSectionTitle',
       bankName: 'bankName',
       bankHolder: 'bankHolder',
       bankAccount: 'bankAccount',
@@ -1239,7 +1215,6 @@
       };
     });
 
-    // تحكم إظهار ونسبة العربون
     const depositToggle = document.getElementById('showDepositToggle');
     const depositPctInput = document.getElementById('depositPercent');
     depositToggle.checked = !!sellerData.showDeposit;
@@ -1270,18 +1245,15 @@
       clientPhone: 'clientPhone',
       clientEmail: 'clientEmail',
       discountValue: 'discountValue',
-      discountType: 'discountType',
-      invoiceNotes: 'notes'
+      discountType: 'discountType'
     };
 
     Object.entries(invoiceMap).forEach(([id, key]) => {
       const el = document.getElementById(id);
       if (!el) return;
       el.value = invoiceData[key] || '';
-      if (el.tagName === 'TEXTAREA') autoResize(el);
       const evt = el.tagName === 'SELECT' ? 'onchange' : 'oninput';
       el[evt] = (e) => {
-        if (e.target.tagName === 'TEXTAREA') autoResize(e.target);
         invoiceData[key] = e.target.value;
         updateTotals();
         saveInvoice();
@@ -1291,7 +1263,6 @@
     updateEmptyPrintVisibility();
   }
 
-  // رفع وحذف الشعار
   const logoBox = document.getElementById('logoBox');
   const logoInput = document.getElementById('logoInput');
   const removeLogoBtn = document.getElementById('removeLogoBtn');
@@ -1321,7 +1292,6 @@
     saveSeller();
   });
 
-  // إضافة خدمة
   document.getElementById('addItemBtn').addEventListener('click', () => {
     invoiceData.items.push({ desc: '', qty: 1, price: '' });
     saveInvoice();
@@ -1330,7 +1300,6 @@
     if (inputs.length) inputs[inputs.length - 1].focus();
   });
 
-  // فاتورة جديدة
   document.getElementById('newInvoiceBtn').addEventListener('click', () => {
     const confirmed = confirm('هل تريدين إنشاء فاتورة جديدة؟ سيتم تفريغ بيانات العميل والخدمات والخصم فقط مع الاحتفاظ ببياناتك وشعارك والبنك والشروط.');
     if (!confirmed) return;
