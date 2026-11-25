@@ -59,7 +59,7 @@
   .toolbar-group {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     flex-wrap: wrap;
   }
 
@@ -90,6 +90,7 @@
     border: 1px solid var(--border);
     padding: 5px 10px;
     border-radius: 9px;
+    cursor: pointer;
   }
 
   .color-picker {
@@ -101,7 +102,7 @@
     padding: 0;
   }
 
-  .currency-input {
+  .mini-input {
     width: 48px !important;
     padding: 2px 4px !important;
     font-size: 12.5px;
@@ -110,6 +111,13 @@
     background: #fff !important;
     border: 1px solid var(--border) !important;
     border-radius: 6px !important;
+  }
+
+  .toggle-check {
+    width: 15px !important;
+    height: 15px;
+    accent-color: var(--accent);
+    cursor: pointer;
   }
 
   .btn {
@@ -470,15 +478,15 @@
     border-style: dashed;
   }
 
-  /* الملخص والخصم والإجمالي */
+  /* الملخص والخصم والإجمالي وجدول الدفعات */
   .totals-wrap {
     display: flex;
     justify-content: flex-end;
-    margin-bottom: 30px;
+    margin-bottom: 28px;
   }
 
   .totals-card {
-    width: 320px;
+    width: 360px;
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -549,7 +557,54 @@
     direction: ltr;
   }
 
-  /* بيانات التحويل والشروط */
+  /* بطاقة تقسيم الدفعات 50% قبل و 50% بعد */
+  .payment-split-box {
+    background: var(--soft);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 14px;
+    margin-top: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .split-header {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--muted);
+    padding-right: 4px;
+  }
+
+  .split-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .split-label-input {
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--text);
+    padding: 2px 4px;
+  }
+
+  .split-amount {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--accent);
+    direction: ltr;
+    white-space: nowrap;
+  }
+
+  .split-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 2px 0;
+  }
+
+  /* بيانات التحويل البنكي والشروط */
   .footer-grid {
     display: grid;
     grid-template-columns: 1.15fr 1fr;
@@ -669,7 +724,7 @@
       display: none !important;
     }
 
-    .client-section, .info-card {
+    .client-section, .info-card, .payment-split-box {
       background: #fafafa !important;
       -webkit-print-color-adjust: exact;
       print-color-adjust: exact;
@@ -699,7 +754,13 @@
       </label>
       <label class="custom-control" title="تغيير رمز العملة">
         <span>العملة</span>
-        <input type="text" id="currencySymbol" class="currency-input" value="ر.س">
+        <input type="text" id="currencySymbol" class="mini-input" value="ر.س">
+      </label>
+      <label class="custom-control" title="إظهار أو تعديل نسبة العربون">
+        <input type="checkbox" id="showDepositToggle" class="toggle-check" checked>
+        <span>عربون</span>
+        <input type="number" id="depositPercent" class="mini-input" min="0" max="100" value="50">
+        <span>%</span>
       </label>
     </div>
 
@@ -780,7 +841,7 @@
       <button type="button" class="btn btn-add" id="addItemBtn">+ إضافة خدمة</button>
     </div>
 
-    <!-- الملخص والخصم والإجمالي -->
+    <!-- الملخص والخصم والإجمالي وجدول الدفعات -->
     <div class="totals-wrap">
       <div class="totals-card">
         <div class="summary-row" id="subtotalRow">
@@ -802,6 +863,20 @@
         <div class="grand-box">
           <span class="grand-label">الإجمالي المستحق</span>
           <span class="grand-value" id="grandTotal">0.00 ر.س</span>
+        </div>
+
+        <!-- تفصيل الدفعات: 50% عربون قبل و 50% بعد -->
+        <div class="payment-split-box" id="paymentSplitBox">
+          <div class="split-header">تفصيل الدفعات</div>
+          <div class="split-row">
+            <input type="text" id="depositBeforeLabel" class="split-label-input" value="الدفعة الأولى (عربون 50% قبل البدء)">
+            <span class="split-amount" id="depositBeforeVal">0.00 ر.س</span>
+          </div>
+          <div class="split-divider"></div>
+          <div class="split-row">
+            <input type="text" id="depositAfterLabel" class="split-label-input" value="الدفعة الثانية (50% بعد الانتهاء)">
+            <span class="split-amount" id="depositAfterVal">0.00 ر.س</span>
+          </div>
         </div>
       </div>
     </div>
@@ -830,7 +905,7 @@
 
       <div class="info-card">
         <input type="text" id="termsSectionTitle" class="section-title-input" value="الشروط والأحكام">
-        <textarea id="sellerTerms" class="terms-input" placeholder="اكتبي شروط العمل والدفع هنا (تبقى محفوظة تلقائياً في كل فاتورة)..."></textarea>
+        <textarea id="sellerTerms" class="terms-input" placeholder="اكتبي شروط العمل والدفع هنا..."></textarea>
       </div>
     </footer>
 
@@ -842,8 +917,8 @@
   </main>
 
 <script>
-  const SELLER_STORAGE_KEY = 'lamar_invoice_seller_v3';
-  const INVOICE_STORAGE_KEY = 'lamar_invoice_current_v3';
+  const SELLER_STORAGE_KEY = 'lamar_invoice_seller_v4';
+  const INVOICE_STORAGE_KEY = 'lamar_invoice_current_v4';
 
   const defaultSeller = {
     name: 'لمار الحربي',
@@ -855,6 +930,10 @@
     logo: '',
     accentColor: '#111111',
     currency: 'ر.س',
+    showDeposit: true,
+    depositPercent: 50,
+    depositBeforeLabel: 'الدفعة الأولى (عربون 50% قبل البدء)',
+    depositAfterLabel: 'الدفعة الثانية (50% بعد الانتهاء)',
     invoiceTitle: 'فاتورة',
     clientSectionTitle: 'فاتورة إلى (بيانات العميل)',
     bankSectionTitle: 'بيانات التحويل البنكي',
@@ -864,7 +943,7 @@
     bankHolder: 'لمار الحربي',
     bankAccount: '',
     bankIban: '',
-    terms: '• يُعتمد البدء بالعمل بعد تحويل الدفعة المتفق عليها.\n• المبلغ غير مسترد بعد البدء في تنفيذ الخدمة.'
+    terms: '• يُدفع عربون بنسبة 50% من إجمالي الفاتورة قبل البدء في العمل.\n• يُدفع المبلغ المتبقي (50%) بعد الانتهاء وعند التسليم.\n• العربون غير مسترد بعد البدء في تنفيذ الخدمة.'
   };
 
   function getTodayDate() {
@@ -1024,6 +1103,19 @@
     document.getElementById('subtotalVal').textContent = formatMoney(subtotal);
     document.getElementById('grandTotal').textContent = formatMoney(grandTotal);
 
+    // حساب العربون والدفعة المتبقية
+    const splitBox = document.getElementById('paymentSplitBox');
+    if (sellerData.showDeposit) {
+      splitBox.style.display = 'flex';
+      const pct = Math.min(100, Math.max(0, parseFloat(sellerData.depositPercent) || 0));
+      const beforeAmt = (grandTotal * pct) / 100;
+      const afterAmt = Math.max(0, grandTotal - beforeAmt);
+      document.getElementById('depositBeforeVal').textContent = formatMoney(beforeAmt);
+      document.getElementById('depositAfterVal').textContent = formatMoney(afterAmt);
+    } else {
+      splitBox.style.display = 'none';
+    }
+
     const discountRow = document.getElementById('discountRow');
     const subtotalRow = document.getElementById('subtotalRow');
     if (discVal <= 0) {
@@ -1116,6 +1208,8 @@
       sellerWebsite: 'website',
       accentColor: 'accentColor',
       currencySymbol: 'currency',
+      depositBeforeLabel: 'depositBeforeLabel',
+      depositAfterLabel: 'depositAfterLabel',
       invoiceTitle: 'invoiceTitle',
       clientSectionTitle: 'clientSectionTitle',
       bankSectionTitle: 'bankSectionTitle',
@@ -1144,6 +1238,30 @@
         saveSeller();
       };
     });
+
+    // تحكم إظهار ونسبة العربون
+    const depositToggle = document.getElementById('showDepositToggle');
+    const depositPctInput = document.getElementById('depositPercent');
+    depositToggle.checked = !!sellerData.showDeposit;
+    depositPctInput.value = sellerData.depositPercent ?? 50;
+
+    depositToggle.onchange = (e) => {
+      sellerData.showDeposit = e.target.checked;
+      updateTotals();
+      saveSeller();
+    };
+
+    depositPctInput.oninput = (e) => {
+      const pct = Math.min(100, Math.max(0, parseFloat(e.target.value) || 0));
+      const rem = 100 - pct;
+      sellerData.depositPercent = pct;
+      sellerData.depositBeforeLabel = `الدفعة الأولى (عربون ${pct}% قبل البدء)`;
+      sellerData.depositAfterLabel = `الدفعة الثانية (${rem}% بعد الانتهاء)`;
+      document.getElementById('depositBeforeLabel').value = sellerData.depositBeforeLabel;
+      document.getElementById('depositAfterLabel').value = sellerData.depositAfterLabel;
+      updateTotals();
+      saveSeller();
+    };
 
     const invoiceMap = {
       invoiceNumber: 'invoiceNumber',
