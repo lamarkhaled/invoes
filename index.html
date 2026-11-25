@@ -505,6 +505,7 @@
     font-weight: 600;
     color: var(--text);
     direction: ltr;
+    white-space: nowrap;
   }
 
   .discount-controls {
@@ -555,6 +556,7 @@
     font-size: 20px;
     font-weight: 700;
     direction: ltr;
+    white-space: nowrap;
   }
 
   /* بطاقة تقسيم الدفعات 50% قبل و 50% بعد */
@@ -676,16 +678,16 @@
     }
   }
 
-  /* تنسيق الطباعة و PDF */
+  /* تنسيق الطباعة و PDF بدون رابط أو تاريخ أو رقم صفحة */
   @media print {
     @page {
       size: A4;
-      margin: 12mm;
+      margin: 0;
     }
 
     body {
       background: #ffffff;
-      padding: 0;
+      padding: 14mm;
     }
 
     .no-print {
