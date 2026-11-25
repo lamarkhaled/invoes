@@ -55,26 +55,26 @@ details.secs .pop label{display:flex;gap:8px;align-items:center;color:var(--bar-
 .dk [contenteditable]:focus{background:rgba(255,255,255,.24);}
 
 /* header */
-.band{background:var(--ac);color:var(--acink);padding:38px 46px 0;display:flex;flex-direction:column;min-height:330px;position:relative;overflow:hidden;}
+.band{background:var(--ac);color:var(--acink);padding:30px 46px 0;display:flex;flex-direction:column;min-height:236px;position:relative;overflow:hidden;}
 .band .top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex:1;}
-.logo{height:190px;width:auto;display:block;margin-top:-6px;margin-right:-10px;}
+.logo{height:132px;width:auto;display:block;margin-top:0;margin-right:-6px;}
 .ttl{text-align:left;padding-top:10px;}
-.ttl h1{margin:0;font-size:76px;line-height:1;font-weight:700;text-align:right;}
+.ttl h1{margin:0;font-size:60px;line-height:1;font-weight:700;text-align:right;}
 .ttl .en{font-size:15px;font-weight:500;color:var(--acmut);margin-top:6px;text-align:right;}
-.meta{display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid var(--acline);margin:26px -46px 0;}
-.meta > div{padding:14px 46px 20px;}
+.meta{display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid var(--acline);margin:14px -46px 0;}
+.meta > div{padding:11px 46px 15px;}
 .meta > div + div{border-inline-start:1px solid var(--acline);padding-inline-start:24px;}
 .meta .k{font-size:12px;color:var(--acmut);}
-.meta .v{font-size:19px;font-weight:600;line-height:1.4;}
+.meta .v{font-size:17px;font-weight:600;line-height:1.4;}
 .ltr{direction:ltr;unicode-bidi:plaintext;text-align:right;}
 .sheet:not(.dk) .band{border-bottom:2px solid #000;}
 .sheet:not(.dk) .meta{border-top-color:rgba(0,0,0,.25);}
 .sheet:not(.dk) .meta > div + div{border-inline-start-color:rgba(0,0,0,.25);}
 
 /* body */
-.body{padding:32px 46px 0;flex:1;display:flex;flex-direction:column;}
+.body{padding:22px 46px 0;flex:1;display:flex;flex-direction:column;}
 .parties{display:grid;grid-template-columns:1fr 1fr;gap:0;}
-.parties > div{padding-bottom:22px;}
+.parties > div{padding-bottom:14px;}
 .parties > div + div{border-inline-start:1.5px solid #000;padding-inline-start:30px;}
 .parties h2{margin:0 0 6px;font-size:12px;font-weight:600;color:var(--grey);}
 .pname{font-size:21px;font-weight:700;line-height:1.35;margin-bottom:6px;}
@@ -85,13 +85,13 @@ details.secs .pop label{display:flex;gap:8px;align-items:center;color:var(--bar-
 .kv > span:nth-child(even){font-weight:500;}
 .kv > .rowx{display:contents;}
 
-.proj{border-top:1.5px solid #000;border-bottom:1px solid var(--line);padding:14px 0;display:flex;gap:12px;align-items:baseline;}
+.proj{border-top:1.5px solid #000;border-bottom:1px solid var(--line);padding:9px 0;display:flex;gap:12px;align-items:baseline;}
 .proj b{font-size:12px;font-weight:600;color:var(--grey);white-space:nowrap;}
 .proj .pv{font-size:17px;font-weight:600;flex:1;}
 
 table{width:100%;border-collapse:collapse;margin-top:6px;}
 th{font-size:12px;font-weight:600;color:var(--grey);text-align:right;padding:8px 6px;border-bottom:1.5px solid #000;}
-td{padding:11px 6px;border-bottom:1px solid var(--line);vertical-align:top;font-size:13.5px;}
+td{padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:top;font-size:13.5px;}
 tr{break-inside:avoid;}
 th.n,td.n{text-align:center;}
 td.n{white-space:nowrap;}
@@ -105,7 +105,7 @@ tr.sel td{background:rgba(47,111,237,.06);}
 .exporting tr.sel td{background:transparent;}
 .add{margin-top:10px;align-self:flex-start;border:1px dashed #9a9a9a;background:transparent;color:#333;border-radius:6px;padding:5px 12px;font-size:12px;font-weight:500;cursor:pointer;}
 
-.totals{width:310px;margin:16px 0 0 0;margin-inline-start:auto;font-size:13px;}
+.totals{width:310px;margin:10px 0 0 0;margin-inline-start:auto;font-size:13px;}
 .totals .r{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px solid var(--line);}
 .totals .r > span:first-child{color:var(--grey);}
 .totals .r.g{border:0;border-top:1.5px solid #000;margin-top:6px;padding:12px 0 0;font-size:15px;font-weight:700;align-items:baseline;}
@@ -113,16 +113,16 @@ tr.sel td{background:rgba(47,111,237,.06);}
 .totals .r.g > span:last-child{font-size:26px;line-height:1.2;}
 .dy{white-space:nowrap;}
 
-.pay{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px;}
-.pay > div{padding:18px 22px 16px;}
+.pay{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px;break-inside:avoid;}
+.pay > div{padding:13px 20px 11px;}
 .pay .a{background:var(--ac);color:var(--acink);}
 .pay .b{border:1.5px solid #000;}
 .pay .l{font-size:12.5px;font-weight:500;opacity:.85;}
-.pay .p{font-size:30px;font-weight:700;line-height:1.35;margin:2px 0;}
+.pay .p{font-size:26px;font-weight:700;line-height:1.35;margin:2px 0;}
 .pay .w{font-size:12px;opacity:.8;}
 .pay .p .cu{font-size:15px;font-weight:600;}
 
-.lower{display:grid;grid-template-columns:340px 1fr;gap:34px;margin-top:26px;padding-bottom:28px;}
+.lower{display:grid;grid-template-columns:340px 1fr;gap:34px;margin-top:18px;padding-bottom:18px;break-inside:avoid;}
 .sec-t{margin:0 0 8px;font-size:13px;font-weight:700;}
 .terms{margin:0;padding-inline-start:18px;font-size:12px;color:#222;}
 .terms li{margin-bottom:3px;}
@@ -139,6 +139,12 @@ tr.sel td{background:rgba(47,111,237,.06);}
 .hide-bank.hide-terms .lower{display:none;}
 .hide-vat #vatRow{display:none;}
 
+.pname > span{display:block;min-height:1.4em;}
+.kv > span:nth-child(even) > [contenteditable]{min-width:120px;}
+.x-empty{display:none !important;}
+.sheet.lblmode [data-lbl]{outline:1px dashed #2f6fed;outline-offset:2px;}
+.dk.lblmode [data-lbl]{outline-color:#8ab4ff;}
+.btn.on{background:#2f6fed;border-color:#2f6fed;color:#fff;}
 .exporting{}
 .exporting .sheet{box-shadow:none;}
 .exporting [contenteditable]:empty::before{content:'';}
@@ -179,11 +185,12 @@ tr.sel td{background:rgba(47,111,237,.06);}
     </div>
   </details>
   <div class="sp"></div>
+  <button class="btn" id="lblMode" type="button" aria-pressed="false">تعديل العناوين</button>
   <button class="btn" id="resetTx" type="button" title="إرجاع العناوين الثابتة لنصوصها الأصلية">إعادة ضبط العناوين</button>
   <button class="btn" id="newInv" type="button">فاتورة جديدة</button>
   <button class="btn" id="imgPdf" type="button">PDF سريع</button>
   <button class="btn pri" id="printBtn" type="button">طباعة / حفظ PDF</button>
-  <div class="hint">اضغط على أي نص في الفاتورة لتعديله، حتى العناوين. «طباعة / حفظ PDF» يعطيك أعلى جودة ونصًا قابلًا للتحديد: اختر «حفظ كملف PDF» وفعّل «رسومات الخلفية».</div>
+  <div class="hint">اضغط على أي خانة في الفاتورة واكتب فيها. لتغيير العناوين الثابتة (مثل «الجوال» أو «الإجمالي») فعّل «تعديل العناوين». الخانات الفارغة تختفي تلقائيًا في الـ PDF. «طباعة / حفظ PDF» يعطيك أعلى جودة ونصًا قابلًا للتحديد: اختر «حفظ كملف PDF» وفعّل «رسومات الخلفية».</div>
 </div>
 
 <div class="stage" id="stage">
@@ -310,15 +317,21 @@ tr.sel td{background:rgba(47,111,237,.06);}
   /* ---- make every static label editable ---- */
   var LABELS=$$('.ttl h1,.ttl .en,.meta .k,.parties h2,.kv > span:nth-child(odd),.proj b,th,.totals .r > span:first-child,.lb,.pay .w,.sec-t').filter(function(el){return !el.querySelector('.lb');});
   LABELS.forEach(function(el,i){
-    el.setAttribute('contenteditable','true');el.setAttribute('data-lbl',i);el.dataset.orig=el.innerHTML;
-    var v=sGet('L'+i);if(v!=null)el.innerHTML=v;
+    el.setAttribute('data-lbl',i);el.dataset.orig=el.innerHTML;
+    var v=sGet('M'+i);if(v!=null)el.innerHTML=v;
   });
+  function setLblMode(on){
+    LABELS.forEach(function(el){if(on)el.setAttribute('contenteditable','true');else el.removeAttribute('contenteditable');});
+    sheet.classList.toggle('lblmode',on);$('#lblMode').classList.toggle('on',on);$('#lblMode').setAttribute('aria-pressed',on?'true':'false');
+    $('#lblMode').textContent=on?'تم':'تعديل العناوين';
+  }
+  $('#lblMode').addEventListener('click',function(){setLblMode(!sheet.classList.contains('lblmode'));});
   document.addEventListener('input',function(e){
     var t=e.target;
-    if(t.dataset&&t.dataset.lbl!=null){sSet('L'+t.dataset.lbl,t.innerHTML);}
+    if(t.dataset&&t.dataset.lbl!=null){sSet('M'+t.dataset.lbl,t.innerHTML);}
   });
   $('#resetTx').addEventListener('click',function(){
-    LABELS.forEach(function(el){el.innerHTML=el.dataset.orig;sDel('L'+el.dataset.lbl);});
+    LABELS.forEach(function(el){el.innerHTML=el.dataset.orig;sDel('M'+el.dataset.lbl);});
     toast('رجعت العناوين لنصوصها الأصلية');
   });
 
@@ -383,6 +396,25 @@ tr.sel td{background:rgba(47,111,237,.06);}
   });
   $('#vatOn').addEventListener('change',function(){sSet('vatOn',this.checked?'1':'0');calc();});
 
+  document.addEventListener('focusout',function(e){
+    var t=e.target;
+    if(t.matches&&t.matches('.p,#disc')&&t.textContent.trim()!==''){t.textContent=fmt(toNum(t.textContent));calc();}
+  });
+
+  /* ---- hide empty optional fields in PDF ---- */
+  function markEmpty(){
+    $$('.kv > span:nth-child(even)',sheet).forEach(function(v){
+      if(v.textContent.trim()===''){v.classList.add('x-empty');if(v.previousElementSibling)v.previousElementSibling.classList.add('x-empty');}
+    });
+    if($('#proj').textContent.trim()==='')$('.proj').classList.add('x-empty');
+    if(toNum($('#disc').textContent)===0)$('#discRow').classList.add('x-empty');
+    $$('.bank',sheet).forEach(function(b){if(!$$('.kv > span:nth-child(even):not(.x-empty)',b).length)b.classList.add('x-empty');});
+    $$('.termsbox',sheet).forEach(function(b){if(b.querySelector('.terms').textContent.trim()==='')b.classList.add('x-empty');});
+  }
+  function unmarkEmpty(){$$('.x-empty',sheet).forEach(function(x){x.classList.remove('x-empty');});}
+  window.addEventListener('beforeprint',markEmpty);
+  window.addEventListener('afterprint',unmarkEmpty);
+
   /* ---- load saved fields ---- */
   $$('[data-save]').forEach(function(el){
     var v=sGet(el.dataset.save);if(v==null)return;
@@ -446,7 +478,7 @@ tr.sel td{background:rgba(47,111,237,.06);}
   $('#imgPdf').addEventListener('click',async function(){
     var btn=this,old=btn.textContent;btn.disabled=true;btn.textContent='جارٍ التجهيز…';
     var a=document.activeElement;if(a&&a.blur)a.blur();
-    document.body.classList.add('exporting');var pt=sheet.style.transform;sheet.style.transform='none';
+    document.body.classList.add('exporting');markEmpty();var pt=sheet.style.transform;sheet.style.transform='none';
     try{
       if(document.fonts&&document.fonts.ready)await document.fonts.ready;
       await new Promise(function(r){setTimeout(r,80);});
@@ -461,11 +493,11 @@ tr.sel td{background:rgba(47,111,237,.06);}
       }
       pdf.save(safe($('#invNo').textContent.trim())+'.pdf');
     }catch(err){toast('تعذّر إنشاء الملف، جرّب «طباعة / حفظ PDF»');}
-    finally{document.body.classList.remove('exporting');sheet.style.transform=pt;btn.disabled=false;btn.textContent=old;fit();}
+    finally{unmarkEmpty();document.body.classList.remove('exporting');sheet.style.transform=pt;btn.disabled=false;btn.textContent=old;fit();}
   });
 
   /* ---- init ---- */
-  applySecs();applyAccent();resetInvoice(true);
+  setLblMode(false);applySecs();applyAccent();resetInvoice(true);
   if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
 })();
 </script>
