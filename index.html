@@ -99,8 +99,10 @@ td.n{white-space:nowrap;}
 .c-q{width:62px;}.c-p{width:108px;}.c-t{width:122px;}
 td.t{font-weight:700;white-space:nowrap;position:relative;}
 .num{direction:ltr;unicode-bidi:isolate;display:inline-block;min-width:30px;text-align:center;}
-.del{position:absolute;left:-32px;top:9px;width:22px;height:22px;border:1px solid var(--line);background:#fff;color:#444;border-radius:50%;font-size:14px;line-height:1;padding:0;display:none;cursor:pointer;}
-tr:hover .del{display:block;}
+.del{position:absolute;left:-36px;top:6px;width:26px;height:26px;border:1px solid var(--line);background:#fff;color:#444;border-radius:50%;font-size:14px;line-height:1;padding:0;display:none;cursor:pointer;}
+tr:hover .del,tr.sel .del{display:block;}
+tr.sel td{background:rgba(47,111,237,.06);}
+.exporting tr.sel td{background:transparent;}
 .add{margin-top:10px;align-self:flex-start;border:1px dashed #9a9a9a;background:transparent;color:#333;border-radius:6px;padding:5px 12px;font-size:12px;font-weight:500;cursor:pointer;}
 
 .totals{width:310px;margin:16px 0 0 0;margin-inline-start:auto;font-size:13px;}
@@ -341,11 +343,17 @@ tr:hover .del{display:block;}
   function renum(){$$('tr',tbody).forEach(function(tr,i){tr.children[0].textContent=i+1;});}
   tbody.addEventListener('click',function(e){
     if(!e.target.classList.contains('del'))return;
-    var tr=e.target.closest('tr');
+    var tr=e.target.closest('tr');selRow(null);
     if(tbody.children.length>1){tr.remove();renum();}
     else{$$('.d,.q,.p',tr).forEach(function(x){x.textContent='';});}
     calc();
   });
+  /* selected row keeps its delete button until you click elsewhere */
+  function selRow(tr){$$('tr.sel',tbody).forEach(function(x){if(x!==tr)x.classList.remove('sel');});if(tr)tr.classList.add('sel');}
+  tbody.addEventListener('focusin',function(e){selRow(e.target.closest('tr'));});
+  tbody.addEventListener('mousedown',function(e){if(e.target.classList.contains('del'))e.preventDefault();else{var tr=e.target.closest('tr');if(tr)selRow(tr);}});
+  document.addEventListener('mousedown',function(e){if(!e.target.closest('#tbody'))selRow(null);});
+  document.addEventListener('touchstart',function(e){if(!e.target.closest('#tbody'))selRow(null);},{passive:true});
   $('#addRow').addEventListener('click',function(e){
     if(e.detail===0||true){addRow();tbody.lastElementChild.querySelector('.d').focus();}
   });
