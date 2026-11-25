@@ -78,7 +78,9 @@ details.secs .pop label{display:flex;gap:8px;align-items:center;color:var(--bar-
 .parties > div + div{border-inline-start:1.5px solid #000;padding-inline-start:30px;}
 .parties h2{margin:0 0 6px;font-size:12px;font-weight:600;color:var(--grey);}
 .pname{font-size:21px;font-weight:700;line-height:1.35;margin-bottom:6px;}
-.kv{display:grid;grid-template-columns:84px 1fr;gap:1px 8px;font-size:12.5px;}
+.kv{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:1px 12px;font-size:12.5px;}
+.kv > span:nth-child(odd){white-space:nowrap;}
+.nw{white-space:nowrap;direction:ltr;unicode-bidi:plaintext;display:inline-block;min-width:60px;text-align:right;}
 .kv > span:nth-child(odd){color:var(--grey);}
 .kv > span:nth-child(even){font-weight:500;}
 .kv > .rowx{display:contents;}
@@ -118,11 +120,11 @@ tr:hover .del{display:block;}
 .pay .w{font-size:12px;opacity:.8;}
 .pay .p .cu{font-size:15px;font-weight:600;}
 
-.lower{display:grid;grid-template-columns:1fr 1.3fr;gap:34px;margin-top:26px;padding-bottom:28px;}
+.lower{display:grid;grid-template-columns:340px 1fr;gap:34px;margin-top:26px;padding-bottom:28px;}
 .sec-t{margin:0 0 8px;font-size:13px;font-weight:700;}
 .terms{margin:0;padding-inline-start:18px;font-size:12px;color:#222;}
 .terms li{margin-bottom:3px;}
-.bank .kv{grid-template-columns:78px 1fr;}
+.bank .kv{grid-template-columns:max-content minmax(0,1fr);}
 
 .foot{background:var(--ac);color:var(--acink);padding:14px 46px 16px;display:flex;justify-content:space-between;gap:14px;font-size:13px;font-weight:500;}
 .sheet:not(.dk) .foot{border-top:2px solid #000;}
@@ -207,19 +209,19 @@ tr:hover .del{display:block;}
           <h2>مقدّم الخدمة</h2>
           <div class="pname"><span contenteditable="true" data-ph="اسمك أو اسم النشاط" data-save="pName"></span></div>
           <div class="kv">
-            <span>الجوال</span><span><span contenteditable="true" data-ph="05XXXXXXXX" data-save="pTel"></span></span>
-            <span>البريد</span><span><span contenteditable="true" data-ph="name@email.com" data-save="pMail"></span></span>
+            <span>الجوال</span><span><span class="nw" contenteditable="true" data-ph="05XXXXXXXX" data-save="pTel"></span></span>
+            <span>البريد</span><span><span class="nw" contenteditable="true" data-ph="name@email.com" data-save="pMail"></span></span>
             <span>الوثيقة</span><span><span contenteditable="true" data-ph="رقم العمل الحر / السجل" data-save="pReg"></span></span>
-            <span>الرقم الضريبي</span><span><span contenteditable="true" data-ph="إن وجد" data-save="pVat"></span></span>
+            <span>الرقم الضريبي</span><span><span class="nw" contenteditable="true" data-ph="إن وجد" data-save="pVat"></span></span>
           </div>
         </div>
         <div>
           <h2>العميل</h2>
           <div class="pname"><span contenteditable="true" id="cName" data-ph="اسم العميل أو الجهة"></span></div>
           <div class="kv">
-            <span>الجوال</span><span><span contenteditable="true" id="cTel" data-ph="رقم الجوال"></span></span>
-            <span>البريد</span><span><span contenteditable="true" id="cMail" data-ph="البريد الإلكتروني"></span></span>
-            <span>الرقم الضريبي</span><span><span contenteditable="true" id="cVat" data-ph="إن وجد"></span></span>
+            <span>الجوال</span><span><span class="nw" contenteditable="true" id="cTel" data-ph="رقم الجوال"></span></span>
+            <span>البريد</span><span><span class="nw" contenteditable="true" id="cMail" data-ph="البريد الإلكتروني"></span></span>
+            <span>الرقم الضريبي</span><span><span class="nw" contenteditable="true" id="cVat" data-ph="إن وجد"></span></span>
           </div>
         </div>
       </section>
@@ -250,7 +252,7 @@ tr:hover .del{display:block;}
           <div class="kv">
             <span>البنك</span><span><span contenteditable="true" data-ph="اسم البنك" data-save="bBank"></span></span>
             <span>اسم الحساب</span><span><span contenteditable="true" data-ph="اسم صاحب الحساب" data-save="bName"></span></span>
-            <span>الآيبان</span><span class="ltr"><span contenteditable="true" data-ph="SA00 0000 0000 0000 0000 0000" data-save="bIban"></span></span>
+            <span>الآيبان</span><span class="ltr"><span class="nw" contenteditable="true" data-ph="SA00 0000 0000 0000 0000 0000" data-save="bIban"></span></span>
           </div>
         </div>
         <div class="termsbox">
